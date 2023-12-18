@@ -13,6 +13,7 @@ I'm a passionate programmer with a keen interest in everything. Currently, I'm f
 <img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/css.svg" alt="CSS3" width="50" height="50">
 <img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/cpp.svg" alt="C++" width="50" height="50">
 <img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/csharp.svg" alt="C#" width="50" height="50">
+<img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/python.svg" alt="C#" width="50" height="50">
 
 ## 🛠️ Frameworks
 
