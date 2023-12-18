@@ -35,5 +35,6 @@ Feel free to explore my repositories, and don't hesitate to reach out!
 <div align="center">
 
 ![Stats](https://github-readme-stats.vercel.app/api?username=scar17off&show_icons=true&count_private=true&hide=issues,prs&theme=radical)
+![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=scar17off&theme=radical)
 
 </div>
