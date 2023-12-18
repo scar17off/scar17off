@@ -1,6 +1,6 @@
 # 👋 Hello, I'm scar17off!
 
-I'm a passionate programmer with a keen interest in everything. Currently, I'm focused on [StealthNet](https://github.com/stealth-net/). 
+I'm a passionate programmer with a keen interest in everything. Currently, I'm focused on: [StealthNet](https://github.com/stealth-net/). 
 
 <div align="center">
 
@@ -20,15 +20,6 @@ I'm a passionate programmer with a keen interest in everything. Currently, I'm f
 ![Electron](https://img.shields.io/badge/Electron-47848F?logo=electron&logoColor=white)
 ![Express.js](https://img.shields.io/badge/Express.js-000000?logo=express&logoColor=white)
 ![Webpack](https://img.shields.io/badge/Webpack-8DD6F9?logo=webpack&logoColor=black)
-
-</div>
-
-## 👨‍💻 Projects
-
-- [OWOT.js](https://github.com/scar17off/owot-js): [OWOT](https://ourworldoftext.com/) Client
-- [LithiumSpammer](https://github.com/scar17off/lithiumspammer): Powerful Guilded spammer
-
-<div align="center">
 
 ## 📫 Let's Connect
 
