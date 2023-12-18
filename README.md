@@ -47,12 +47,6 @@ I'm a passionate programmer with a keen interest in everything. Currently, I'm f
 [![Twitch](https://img.shields.io/badge/Twitch-9146FF?logo=twitch&logoColor=white)](https://www.twitch.tv/scar17off)
 [![VKontakte](https://img.shields.io/badge/VKontakte-4C75A3?logo=vk&logoColor=white)](https://vk.com/scar17off)
 
-</div>
-
-Feel free to explore my repositories, and don't hesitate to reach out!
-
-<div align="center">
-
 ![Stats](https://github-readme-stats.vercel.app/api?username=scar17off&show_icons=true&count_private=true&hide=issues,prs&theme=dark)
 ![Top languages](https://github-readme-stats.vercel.app/api/top-langs/?username=scar17off&theme=dark)
 
