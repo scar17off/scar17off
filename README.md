@@ -34,6 +34,9 @@ I'm a passionate programmer with a keen interest in everything. Currently, I'm f
 [![Pinterest](https://img.shields.io/badge/Pinterest-E60023?logo=pinterest&logoColor=white)](https://ru.pinterest.com/scar17off/)
 [![npm](https://img.shields.io/badge/npm-CB3837?logo=npm&logoColor=white)](https://www.npmjs.com/~scar17off)
 [![Gravatar](https://img.shields.io/badge/Gravatar-1E8CBE?logo=gravatar&logoColor=white)](https://en.gravatar.com/scar17off)
+[![YouTube](https://img.shields.io/badge/YouTube-FF0000?logo=youtube&logoColor=white)](https://youtube.com/@scar17off?si=CKawzJMKppyFtLE0)
+[![Twitch](https://img.shields.io/badge/Twitch-9146FF?logo=twitch&logoColor=white)](https://www.twitch.tv/scar17off)
+[![VKontakte](https://img.shields.io/badge/VKontakte-4C75A3?logo=vk&logoColor=white)](https://vk.com/scar17off)
 
 </div>
 
