@@ -26,6 +26,14 @@ I'm a passionate programmer with a keen interest in everything. Currently, I'm f
 [![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?logo=twitter&logoColor=white)](https://x.com/scar17off)
 [![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?logo=telegram&logoColor=white)](https://t.me/scar17off)
 [![Guilded](https://img.shields.io/badge/Guilded-7D00FF?logo=guilded&logoColor=white)](https://guilded.gg/scar17off)
+[![Steam](https://img.shields.io/badge/Steam-000000?logo=steam&logoColor=white)](https://steamcommunity.com/id/scar17off/)
+[![Greasy Fork](https://img.shields.io/badge/Greasy_Fork-009966?logo=greasyfork&logoColor=white)](https://greasyfork.org/en/users/754226-scar17)
+[![Pastebin](https://img.shields.io/badge/Pastebin-02D345?logo=pastebin&logoColor=white)](https://pastebin.com/u/scar17off)
+[![Reddit](https://img.shields.io/badge/Reddit-FF4500?logo=reddit&logoColor=white)](https://www.reddit.com/user/scar17off/)
+[![Roblox](https://img.shields.io/badge/Roblox-CA1F37?logo=roblox&logoColor=white)](https://www.roblox.com/users/3175818992/profile)
+[![Pinterest](https://img.shields.io/badge/Pinterest-E60023?logo=pinterest&logoColor=white)](https://ru.pinterest.com/scar17off/)
+[![npm](https://img.shields.io/badge/npm-CB3837?logo=npm&logoColor=white)](https://www.npmjs.com/~scar17off)
+[![Gravatar](https://img.shields.io/badge/Gravatar-1E8CBE?logo=gravatar&logoColor=white)](https://en.gravatar.com/scar17off)
 
 </div>
 
