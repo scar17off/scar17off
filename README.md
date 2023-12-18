@@ -15,7 +15,7 @@ I'm a passionate programmer with a keen interest in everything. Currently, I'm f
 ![C#](https://img.shields.io/badge/C%23-239120?logo=csharp&logoColor=white)
 ![VBScript](https://img.shields.io/badge/VBScript-15AABF?logo=v&logoColor=white)
 
-## Frameworks
+## 🛠️ Frameworks
 
 ![Electron](https://img.shields.io/badge/Electron-47848F?logo=electron&logoColor=white)
 ![Express.js](https://img.shields.io/badge/Express.js-000000?logo=express&logoColor=white)
