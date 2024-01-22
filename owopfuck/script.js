@@ -7,8 +7,6 @@
 // @author       scar17off
 // @match        *://augustberchelmann.com/owop/*
 // @match        *://ourworldofpixels.com/*
-// @match        *://ywop.scar17off.repl.co/*
-// @match        *://owop.scar17off.repl.co/*
 // @icon         https://www.google.com/s2/favicons?domain=ourworldofpixels.com
 // @grant        none
 // @require      https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.1/socket.io.js
@@ -121,7 +119,8 @@ const SCRIPT_VERSION = "1.4.1";
 			follow: false,
 			bothighlight: false,
 			areahighlight: false,
-			areahighlightblink: false
+			areahighlightblink: false,
+			antixss: true
 		});
 	};
 	createconfig();
@@ -282,7 +281,6 @@ const SCRIPT_VERSION = "1.4.1";
 			file.click();
 		});
 		const eq = (a, b) => a[0] === b[0] && a[1] === b[1] && a[2] === b[2];
-
 		const error = m => console.error("%c " + m, "color: #ff0000");
 
 		class ChunkSystem {
@@ -1233,6 +1231,13 @@ margin: 0 -5px -5px -5px;
 			</div>
 			<div style="margin-bottom: 3px;" class="control-group">
 				<label style="padding-left: 5px;" class="control control-checkbox">
+					<label class="owopfuck-cbtext" style="margin-left: 25px;">Anti-XSS</label>
+					<input id="owopfuck-antixss" name="antixss" type="checkbox"></input>
+					<div class="control_indicator"></div>
+				</label>
+			</div>
+			<div style="margin-bottom: 3px;" class="control-group">
+				<label style="padding-left: 5px;" class="control control-checkbox">
 					<label class="owopfuck-cbtext" style="margin-left: 25px;">Fake rank</label>
 					<input id="owopfuck-fakerank" name="fakerank" type="checkbox"></input>
 					<div class="control_indicator"></div>
@@ -1730,13 +1735,13 @@ input.owopfuck-range2[type="range"]::-moz-range-thumb {
 	border-radius: 3px;
 	color: rgb(230, 230, 230);
 	width: 35px;
-	text-align: center;
+    text-align: center;
 }
 /*
 .owopfuck-rangetext::-webkit-inner-spin-button,
 .owopfuck-rangetext::-webkit-outer-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
+  	-webkit-appearance: none;
+  	margin: 0;
 }
 */
 .owopfuck-label {
@@ -1769,8 +1774,8 @@ div.owopfuck-section {
 }
 div[id^="owopfuck-tab-"] {
 	display: flex;
-	margin-left: 10px;
-	margin-top: 8px;
+    margin-left: 10px;
+    margin-top: 8px;
 	overflow-y: auto;
 }
 #owopfuck-tablist {
@@ -1778,14 +1783,14 @@ div[id^="owopfuck-tab-"] {
 	margin-top: -40px;
 }
 ::-webkit-scrollbar-thumb {
-	background-color: rgb(65, 65, 65);
+    background-color: rgb(65, 65, 65);
 }
 ::-webkit-scrollbar-button {
-	display: none;
+   	display: none;
 }
 ::-webkit-scrollbar {
-	width: 6px;
-	height: 1px;
+    width: 6px;
+    height: 1px;
 }
 html, body {
 	background-color: rgb(11, 11, 11);
@@ -2127,26 +2132,53 @@ margin: 0 -5px -5px -5px;
 			script.onload = onload;
 			document.head.appendChild(script);
 		};
-		OWOP.chat.recvModifier = (msg) => {
-			if(msg == 'Stop playing around with mod tools! :)') return;
+		function sanitizeInput(input) {
+            return input.replace(/[&<>"'/]/g, function (match) {
+                return {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#39;',
+                    '/': '&#x2F;'
+                }[match];
+            });
+        };
+        function isInputSafe(input) {
+            const htmlTags = /<\/?[a-z][\s\S]*>/i;
+            const scriptTags = /<script[\s\S]*?>[\s\S]*?<\/script>/gi;
+            const eventHandlers = /on\w+="[^"]*"/i;
+
+            if (htmlTags.test(input)) return false;
+            if (scriptTags.test(input)) return false;
+            if (eventHandlers.test(input)) return false;
+
+            return true;
+        };
+		const defaultrecvModifier = (msg) => {
+			if(msg == "Stop playing around with mod tools! :)") return;
+			if(!isInputSafe(msg)) return "[ANTI-XSS] " + sanitizeInput(msg);
 			return msg;
 		};
+		OWOP.chat.recvModifier = defaultrecvModifier;
 		load("https://www.google.com/recaptcha/api.js");
+
 		// (auto) manual updater
-		fetch("https://scar17.scar17off.repl.co/owopfuck/version")
+		fetch("https://raw.githubusercontent.com/scar17off/scar17off/main/owopfuck/version")
 			.then(data => {
 				return data.text();
 			}).then(data => {
 				if(data !== SCRIPT_VERSION) {
-					location.href = "https://scar17.scar17off.repl.co/owopfuck/script.js"; // i will force everyone to update owopfuck
+					location.href = "https://raw.githubusercontent.com/scar17off/scar17off/main/owopfuck/script.js"; // i will force everyone to update owopfuck
 				};
 			});
+
 		document.getElementById("owopfuck-fakerank").addEventListener("input", () => {
 			const checked = document.getElementById("owopfuck-fakerank").checked;
 
 			if(checked) {
 				OWOP.chat.recvModifier = (msg) => {
-					if(msg == 'Stop playing around with mod tools! :)') return;
+					if(msg == "Stop playing around with mod tools! :)") return;
 					let temp = msg.split(':');
 					if((temp[0].includes(OWOP.player.id.toString()) || temp[0].includes(localStorage.nick.toString())) && getValue("fakerank")) {
 						if(msg.startsWith("(M)") || msg.startsWith("(A)")) msg = msg.replace("(M) ", '').replace("(A) ", '');
@@ -2163,10 +2195,7 @@ margin: 0 -5px -5px -5px;
 					OWOP.tool.updateToolbar();
 				};
 			} else {
-				OWOP.chat.recvModifier = (msg) => {
-					if(msg == 'Stop playing around with mod tools! :)') return;
-					return msg;
-				};
+				OWOP.chat.recvModifier = defaultrecvModifier;
 				for (var k in OWOP.tool.allTools) {
 					OWOP.tool.allTools[k].rankRequired = OWOP.tool.allTools[k].rankRequiredB;
 					OWOP.tool.updateToolbar();
@@ -2607,7 +2636,7 @@ margin: 0 -5px -5px -5px;
 		};
 
 		// patterns
-		load("https://scar17.scar17off.repl.co/helpers/patterns.js", () => {
+		load("https://raw.githubusercontent.com/scar17off/scar17off/main/helpers/patterns.js", () => {
 			for (const key in constants) {
 				if(constants.hasOwnProperty(key)) document.querySelector("*[name^='eraserpattern']").add(new Option(key, window.constants[key]));
 				if(constants.hasOwnProperty(key)) document.querySelector("*[name^='areapattern']").add(new Option(key, window.constants[key]));
@@ -3669,9 +3698,8 @@ pos.y + (Math.sin(2 * Math.PI * 2 / length * i + f) * length);`;
 					let ctx = cvs.getContext("2d");
 					textContext = ctx;
 
-					let Pixelization = getValue("pixelization");
-					let x = !Pixelization ? OWOP.mouse.tileX : Math.floor(OWOP.mouse.tileX / 16) * 16,
-						y = !Pixelization ? OWOP.mouse.tileY : Math.floor(OWOP.mouse.tileY / 16) * 16;
+					let x = OWOP.mouse.tileX,
+						y = OWOP.mouse.tileY;
 
 					for (let i = 0; i < imageData.data.length; i += 4) {
 						if(
