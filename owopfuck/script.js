@@ -1224,13 +1224,6 @@ margin: 0 -5px -5px -5px;
 			</div>
 			<div style="margin-bottom: 3px;" class="control-group">
 				<label style="padding-left: 5px;" class="control control-checkbox">
-					<label class="owopfuck-cbtext" style="margin-left: 25px;">IRC</label>
-					<input id="owopfuck-irc" name="irc" type="checkbox"></input>
-					<div class="control_indicator"></div>
-				</label>
-			</div>
-			<div style="margin-bottom: 3px;" class="control-group">
-				<label style="padding-left: 5px;" class="control control-checkbox">
 					<label class="owopfuck-cbtext" style="margin-left: 25px;">Anti-XSS</label>
 					<input id="owopfuck-antixss" name="antixss" type="checkbox"></input>
 					<div class="control_indicator"></div>
@@ -1240,6 +1233,13 @@ margin: 0 -5px -5px -5px;
 				<label style="padding-left: 5px;" class="control control-checkbox">
 					<label class="owopfuck-cbtext" style="margin-left: 25px;">Fake rank</label>
 					<input id="owopfuck-fakerank" name="fakerank" type="checkbox"></input>
+					<div class="control_indicator"></div>
+				</label>
+			</div>
+			<div style="margin-bottom: 3px;" class="control-group">
+				<label style="padding-left: 5px;" class="control control-checkbox">
+					<label class="owopfuck-cbtext" style="margin-left: 25px;">Vanish</label>
+					<input id="owopfuck-vanish" name="vanish" type="checkbox"></input>
 					<div class="control_indicator"></div>
 				</label>
 			</div>
@@ -1303,17 +1303,6 @@ margin: 0 -5px -5px -5px;
 				<label class="owopfuck-cbtext" style="margin-left: 25px;">Main GUI</label>
 				<div style="margin-top: -15px"><input name="guibind" class="owopfuck-keyinput" id="owopfuck-maingui-keybind" readonly></input></div>
 			</label>
-			<label style="padding-left: 50px; margin-bottom: 3px;">
-				<label class="owopfuck-cbtext" style="margin-left: 25px;">IRC</label>
-				<div style="margin-top: -15px"><input name="ircbind" class="owopfuck-keyinput" id="owopfuck-irc-keybind" readonly></input></div>
-			</label>
-			<div style="margin-bottom: 3px;" class="control-group">
-				<label style="padding-left: 5px;" class="control control-checkbox">
-					<label class="owopfuck-cbtext" style="margin-left: 25px;">Vanish</label>
-					<input id="owopfuck-vanish" name="vanish" type="checkbox"></input>
-					<div class="control_indicator"></div>
-				</label>
-			</div>
 		</div>
 		</div>
 	</div>
@@ -2132,6 +2121,21 @@ margin: 0 -5px -5px -5px;
 			script.onload = onload;
 			document.head.appendChild(script);
 		};
+		function loadTextFile(url, onload) {
+			fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error(`Failed to load ${url}`);
+					}
+					return response.text();
+				})
+				.then(text => {
+					onload(text);
+				})
+				.catch(error => {
+					console.error(error);
+				});
+		};
 		function sanitizeInput(input) {
             return input.replace(/[&<>"'/]/g, function (match) {
                 return {
@@ -2161,17 +2165,13 @@ margin: 0 -5px -5px -5px;
 			return msg;
 		};
 		OWOP.chat.recvModifier = defaultrecvModifier;
+		
 		load("https://www.google.com/recaptcha/api.js");
 
 		// (auto) manual updater
-		fetch("https://raw.githubusercontent.com/scar17off/scar17off/main/owopfuck/version")
-			.then(data => {
-				return data.text();
-			}).then(data => {
-				if(data !== SCRIPT_VERSION) {
-					location.href = "https://raw.githubusercontent.com/scar17off/scar17off/main/owopfuck/script.js"; // i will force everyone to update owopfuck
-				};
-			});
+		loadTextFile("https://raw.githubusercontent.com/scar17off/scar17off/main/owopfuck/version", text => {
+			if(text !== SCRIPT_VERSION) location.href = "https://raw.githubusercontent.com/scar17off/scar17off/main/owopfuck/script.js"; // i will force everyone to update owopfuck
+		});
 
 		document.getElementById("owopfuck-fakerank").addEventListener("input", () => {
 			const checked = document.getElementById("owopfuck-fakerank").checked;
@@ -2244,50 +2244,6 @@ margin: 0 -5px -5px -5px;
 					OWOP.removeListener(OWOP.events.tick, bot.highlight.move);
 					bot.highlight.move();
 				});
-			};
-		});
-		let ircServer;
-		function reconnectIRC() {
-			ircServer = io("wss://owopfuck-cc.scar17off.repl.co/");
-			try {
-				ircServer.on("message", (id, author, message) => displayIRCmessage(id, author, message));
-				ircServer.on("self", (id) => ircServer.id = id);
-				ircServer.on("users", (n) => owopfuck.infowindow.container.childNodes[0].childNodes[12].innerText = 'IRC users: ' + n);
-			} catch (error) {
-
-			};
-		};
-		function displayIRCmessage(id, author, message) {
-			if(id == ircServer.id) return;
-			OWOP.chat.local(`<span style="color: #eb4034;">IRC <span style="color: #34abeb;">[${id}] ${author}:</span></span> <span style="color: white">${message}</span>`);
-		};
-		if(getValue("irc")) reconnectIRC();
-		document.getElementById("owopfuck-irc").addEventListener("input", () => {
-			if(!document.getElementById("owopfuck-irc").checked && ircServer) {
-				ircServer.close();
-			} else if(document.getElementById("owopfuck-irc").checked) {
-				reconnectIRC();
-			};
-		});
-		let chatInput = document.getElementById("chat-input");
-		chatInput.addEventListener("keydown", function (event) {
-			let key = event.key;
-			if(event.location === KeyboardEvent.DOM_KEY_LOCATION_RIGHT) key = "R" + key;
-			if(key == getValue("ircbind") && getValue("irc")) {
-				if(chatInput.value.startsWith("/nick ")) {
-					let nick = chatInput.value.replace("/nick ", '');
-					localStorage.ircnick = nick;
-					chatInput.value = '';
-					chatInput.style.height = "16px";
-					event.stopPropagation();
-					return;
-				};
-				if(chatInput.value.trimLeft().trimRight() == '') return;
-				OWOP.chat.local(`<span style="color: #eb4034;">IRC <span style="color: #34abeb;">[${ircServer.id}] ${localStorage.ircnick}:</span></span> <span style="color: white">${chatInput.value.replaceAll('<', '').replaceAll('>', '')}</span>`);
-				ircServer.emit("send", chatInput.value, localStorage.ircnick);
-				chatInput.value = '';
-				chatInput.style.height = "16px";
-				event.stopPropagation();
 			};
 		});
 		const switchVisiblity = (window) => OWOP.windowSys.windows[window].container.parentNode.hidden = !OWOP.windowSys.windows[window].container.parentNode.hidden;
@@ -4493,7 +4449,6 @@ pos.y + (Math.sin(2 * Math.PI * 2 / length * i + f) * length);`;
 			jobswindow: OWOP.windowSys.windows["owopfuck jobs"],
 			mainwindow: OWOP.windowSys.windows["owopfuck"],
 			config: { getValue, setValue },
-			irc: ircServer,
 			area_poses: [],
 			erase_poses: []
 		};
