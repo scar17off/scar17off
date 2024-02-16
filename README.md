@@ -1,6 +1,6 @@
 # 👋 Hello, I'm scar17off!
 
-I'm a passionate programmer with a keen interest in everything. Currently, I'm focused on: [StealthNet](https://github.com/stealth-net/). 
+I'm a passionate programmer with a keen interest in everything. Currently, I'm focused on: [StealthNet](https://github.com/stealth-net/) and [DrawZone](https://github.com/scar17off/drawzone). 
 
 <div align="center">
 
