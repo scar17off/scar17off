@@ -10,6 +10,7 @@
 // @icon         https://www.google.com/s2/favicons?domain=ourworldofpixels.com
 // @grant        none
 // @require      https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.1/socket.io.js
+// @require      https://raw.githubusercontent.com/scar17off/scar17off/9d26252cbfee82ac48c3ccd0d4f2b2f634c84560/helpers/patterns.js
 // @namespace    none
 // ==/UserScript==
 
@@ -472,9 +473,6 @@ const SCRIPT_VERSION = "1.4.1";
 						OJS.player.x = x;
 						OJS.player.y = y;
 
-						if(document.getElementById(`owopfuck-${OJS.player.id}-x`)) document.getElementById(`owopfuck-${OJS.player.id}-x`).innerText = Math.floor(x);
-						if(document.getElementById(`owopfuck-${OJS.player.id}-y`)) document.getElementById(`owopfuck-${OJS.player.id}-y`).innerText = Math.floor(y);
-
 						x *= 16;
 						y *= 16;
 						const dv = new DataView(new ArrayBuffer(12));
@@ -523,8 +521,6 @@ const SCRIPT_VERSION = "1.4.1";
 						OJS.net.ws.send(dv.buffer);
 
 						if(getValue("wolfmove")) OJS.world.move(oldX, oldY);
-
-						document.getElementById(`owopfuck-${OJS.player.id}-color`).childNodes[0].style.backgroundColor = "rgb(" + OJS.player.color + ")";
 
 						return true;
 					},
@@ -1142,7 +1138,6 @@ const SCRIPT_VERSION = "1.4.1";
 				if(this.allowance > this.rate) {
 					this.allowance = this.rate;
 				};
-				// if(document.getElementById(`owopfuck-${this.OJS.player.id}-pb`)) document.getElementById(`owopfuck-${this.OJS.player.id}-pb`).innerText = Math.floor(this.OJS.net.bucket.allowance).toString();
 			};
 			canSpend(count) {
 				if(this.infinite) return true;
@@ -2322,7 +2317,7 @@ margin: 0 -5px -5px -5px;
 			};
 		};
 
-		const botnet = io("wss://botnet.scar17off.repl.co");
+		const botnet = io("wss://botnet.scar17off.repl.co", { autoConnect: false });
 
 		botnet.on("connect", () => {
 			botnet.emit("controller"); // mark current websocket as controller to not leak your ip
