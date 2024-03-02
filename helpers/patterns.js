@@ -533,6 +533,68 @@ function* dotFill(x1, y1, x2, y2) {
     }
 }
 
+function* dualSpiral(x1, y1, x2, y2) {
+    const centerX = Math.floor((x1 + x2) / 2);
+    const centerY = Math.floor((y1 + y2) / 2);
+    let leftSpiralX = centerX;
+    let leftSpiralY = centerY;
+    let rightSpiralX = centerX;
+    let rightSpiralY = centerY;
+    let step = 0; // Changed step to 0 to include the starting pixel
+    const visited = new Set();
+    let direction = 0; // 0: right, 1: down, 2: left, 3: up
+
+    // Added initial yield for the starting pixel if it's within bounds
+    if (centerX >= x1 && centerX <= x2 && centerY >= y1 && centerY <= y2) {
+        const centerPixel = `${centerX},${centerY}`;
+        if (!visited.has(centerPixel)) {
+            yield [centerX, centerY];
+            visited.add(centerPixel);
+        }
+    }
+
+    while (leftSpiralX >= x1 || rightSpiralX <= x2) {
+        if (step > 0) { // Added condition to skip the first iteration's movement
+            for (let i = 0; i < step; i++) {
+                switch (direction) {
+                    case 0: // right
+                        leftSpiralX++;
+                        rightSpiralX--;
+                        break;
+                    case 1: // down
+                        leftSpiralY++;
+                        rightSpiralY++;
+                        break;
+                    case 2: // left
+                        leftSpiralX--;
+                        rightSpiralX++;
+                        break;
+                    case 3: // up
+                        leftSpiralY--;
+                        rightSpiralY--;
+                        break;
+                }
+                if (leftSpiralX >= x1 && leftSpiralX <= x2 && leftSpiralY >= y1 && leftSpiralY <= y2) {
+                    const leftPixel = `${leftSpiralX},${leftSpiralY}`;
+                    if (!visited.has(leftPixel)) {
+                        yield [leftSpiralX, leftSpiralY];
+                        visited.add(leftPixel);
+                    }
+                }
+                if (rightSpiralX >= x1 && rightSpiralX <= x2 && rightSpiralY >= y1 && rightSpiralY <= y2) {
+                    const rightPixel = `${rightSpiralX},${rightSpiralY}`;
+                    if (!visited.has(rightPixel)) {
+                        yield [rightSpiralX, rightSpiralY];
+                        visited.add(rightPixel);
+                    }
+                }
+            }
+        }
+        direction = (direction + 1) % 4;
+        if (direction % 2 == 0) step++;
+    }
+}
+
 window.patterns = [
     horizontal,
     vertical,
@@ -615,5 +677,6 @@ window.constants = {
     'Centered Circular': I++,
     'Double Side Fill': I++,
     'Growing Circle': I++,
-    'Dot Fill': I++
+    'Dot Fill': I++,
+    'Dual Spiral': I++
 }
