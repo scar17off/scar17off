@@ -540,11 +540,10 @@ function* dualSpiral(x1, y1, x2, y2) {
     let leftSpiralY = centerY;
     let rightSpiralX = centerX;
     let rightSpiralY = centerY;
-    let step = 0; // Changed step to 0 to include the starting pixel
+    let step = 0;
     const visited = new Set();
-    let direction = 0; // 0: right, 1: down, 2: left, 3: up
+    let direction = 0;
 
-    // Added initial yield for the starting pixel if it's within bounds
     if (centerX >= x1 && centerX <= x2 && centerY >= y1 && centerY <= y2) {
         const centerPixel = `${centerX},${centerY}`;
         if (!visited.has(centerPixel)) {
@@ -554,7 +553,7 @@ function* dualSpiral(x1, y1, x2, y2) {
     }
 
     while (leftSpiralX >= x1 || rightSpiralX <= x2) {
-        if (step > 0) { // Added condition to skip the first iteration's movement
+        if (step > 0) {
             for (let i = 0; i < step; i++) {
                 switch (direction) {
                     case 0: // right
