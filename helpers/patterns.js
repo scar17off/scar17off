@@ -633,7 +633,8 @@ window.patterns = [
     centeredCircularFill,
     doubleSideFill,
     growingCircle,
-    dotFill
+    dotFill,
+    dualSpiral
 ];
 let I = 0;
 
