@@ -21,6 +21,7 @@ I'm a passionate programmer with a keen interest in everything. Currently, I'm f
 <img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/webpack.svg" alt="Webpack.js" width="50" height="50">
 <img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/chartjs.svg" alt="Chart.js" width="50" height="50">
 <img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/flask.svg" alt="Flask" width="50" height="50">
+<img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/unity.svg" alt="Flask" width="50" height="50">
 <br>
 <img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/figma.svg" alt="Figma" width="50" height="50">
 <img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/git.svg" alt="GIT" width="50" height="50">
