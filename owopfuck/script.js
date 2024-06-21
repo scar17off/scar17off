@@ -2163,11 +2163,6 @@ margin: 0 -5px -5px -5px;
 
         load("https://www.google.com/recaptcha/api.js");
 
-        // (auto) manual updater
-        loadTextFile("https://raw.githubusercontent.com/scar17off/scar17off/main/owopfuck/version", text => {
-            if(text !== SCRIPT_VERSION) location.href = "https://raw.githubusercontent.com/scar17off/scar17off/main/owopfuck/script.js"; // i will force everyone to update owopfuck
-        });
-
         document.getElementById("owopfuck-fakerank").addEventListener("input", () => {
             const checked = document.getElementById("owopfuck-fakerank").checked;
 
