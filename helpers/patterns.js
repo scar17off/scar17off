@@ -594,6 +594,123 @@ function* dualSpiral(x1, y1, x2, y2) {
     }
 }
 
+function* sierpinskiCarpet(x1, y1, x2, y2, depth = 4) {
+    const first = "horizontal";
+    const second = "vertical";
+    const visited = new Set();
+
+    function* drawCarpet(x1, y1, x2, y2, depth) {
+        if (depth === 0) {
+            for (let y = y1; y <= y2; y++) {
+                for (let x = x1; x <= x2; x++) {
+                    const pixel = `${x},${y}`;
+                    if (!visited.has(pixel)) {
+                        yield* window[first](x, y, x, y);
+                        visited.add(pixel);
+                    }
+                }
+            }
+        } else {
+            const w = x2 - x1 + 1;
+            const h = y2 - y1 + 1;
+            const dw = Math.floor(w / 3);
+            const dh = Math.floor(h / 3);
+            const newDepth = depth - 1;
+
+            // Top 3 segments
+            yield* drawCarpet(x1, y1, x1 + dw - 1, y1 + dh - 1, newDepth);
+            yield* drawCarpet(x1 + dw, y1, x1 + 2 * dw - 1, y1 + dh - 1, newDepth);
+            yield* drawCarpet(x1 + 2 * dw, y1, x2, y1 + dh - 1, newDepth);
+
+            // Middle 3 segments (skip middle)
+            yield* drawCarpet(x1, y1 + dh, x1 + dw - 1, y1 + 2 * dh - 1, newDepth);
+            yield* drawCarpet(x1 + 2 * dw, y1 + dh, x2, y1 + 2 * dh - 1, newDepth);
+
+            // Bottom 3 segments
+            yield* drawCarpet(x1, y1 + 2 * dh, x1 + dw - 1, y2, newDepth);
+            yield* drawCarpet(x1 + dw, y1 + 2 * dh, x1 + 2 * dw - 1, y2, newDepth);
+            yield* drawCarpet(x1 + 2 * dw, y1 + 2 * dh, x2, y2, newDepth);
+        }
+    }
+
+    yield* drawCarpet(x1, y1, x2, y2, depth);
+
+    // Fill all empty squares of the carpet
+    const w = x2 - x1 + 1;
+    const h = y2 - y1 + 1;
+    const dw = Math.floor(w / 3);
+    const dh = Math.floor(h / 3);
+
+    // Fill the middle empty square
+    for (let y = y1 + dh; y <= y1 + 2 * dh - 1; y++) {
+        for (let x = x1 + dw; x <= x1 + 2 * dw - 1; x++) {
+            const pixel = `${x},${y}`;
+            if (!visited.has(pixel)) {
+                yield* window[second](x, y, x, y);
+                visited.add(pixel);
+            }
+        }
+    }
+
+    // Simplified and comprehensive filling of empty squares
+    for (let sectionY = 0; sectionY < 3; sectionY++) {
+        for (let sectionX = 0; sectionX < 3; sectionX++) {
+            // Skip the center square
+            if (sectionX === 1 && sectionY === 1) continue;
+
+            let startX = x1 + sectionX * dw;
+            let endX = (sectionX === 2) ? x2 : startX + dw - 1;
+            let startY = y1 + sectionY * dh;
+            let endY = (sectionY === 2) ? y2 : startY + dh - 1;
+
+            for (let y = startY; y <= endY; y++) {
+                for (let x = startX; x <= endX; x++) {
+                    const pixel = `${x},${y}`;
+                    if (!visited.has(pixel)) {
+                        yield* window[second](x, y, x, y);
+                        visited.add(pixel);
+                    }
+                }
+            }
+        }
+    }
+}
+
+function* sierpinskiTriangle(x1, y1, x2, y2) {
+    const visited = new Set();
+
+    function* fillTriangle(x1, y1, x2, y2, x3, y3) {
+        if (Math.abs(x2 - x1) < 1 && Math.abs(y2 - y1) < 1) {
+            const pixel = [Math.floor((x1 + x2 + x3) / 3), Math.floor((y1 + y2 + y3) / 3)];
+            if (!visited.has(`${pixel[0]},${pixel[1]}`)) {
+                visited.add(`${pixel[0]},${pixel[1]}`);
+                yield pixel;
+            }
+        } else {
+            let mx1 = (x1 + x2) / 2;
+            let my1 = (y1 + y2) / 2;
+            let mx2 = (x2 + x3) / 2;
+            let my2 = (y2 + y3) / 2;
+            let mx3 = (x3 + x1) / 2;
+            let my3 = (y3 + y1) / 2;
+
+            yield* fillTriangle(x1, y1, mx1, my1, mx3, my3);
+            yield* fillTriangle(mx1, my1, x2, y2, mx2, my2);
+            yield* fillTriangle(mx3, my3, mx2, my2, x3, y3);
+            yield* fillTriangle(mx1, my1, mx2, my2, mx3, my3);
+        }
+    }
+
+    const mx = (x1 + x2) / 2;
+
+    // Fill the main triangle
+    yield* fillTriangle(x1, y2, x2, y2, mx, y1);
+
+    // Fill the left and right triangles extending to the bottom
+    yield* fillTriangle(x1, y1, mx, y1, x1, y2);
+    yield* fillTriangle(x2, y1, mx, y1, x2, y2);
+}
+
 window.patterns = [
     horizontal,
     vertical,
@@ -634,7 +751,9 @@ window.patterns = [
     doubleSideFill,
     growingCircle,
     dotFill,
-    dualSpiral
+    dualSpiral,
+    sierpinskiCarpet,
+    sierpinskiTriangle
 ];
 let I = 0;
 
@@ -678,5 +797,7 @@ window.constants = {
     'Double Side Fill': I++,
     'Growing Circle': I++,
     'Dot Fill': I++,
-    'Dual Spiral': I++
+    'Dual Spiral': I++,
+    'Sierpinski Carpet': I++,
+    'Sierpinski Triangle': I++
 }
