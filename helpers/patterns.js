@@ -595,8 +595,8 @@ function* dualSpiral(x1, y1, x2, y2) {
 }
 
 function* sierpinskiCarpet(x1, y1, x2, y2, depth = 4) {
-    const first = "horizontal";
-    const second = "vertical";
+    const first = horizontal;
+    const second = vertical;
     const visited = new Set();
 
     function* drawCarpet(x1, y1, x2, y2, depth) {
@@ -605,7 +605,7 @@ function* sierpinskiCarpet(x1, y1, x2, y2, depth = 4) {
                 for (let x = x1; x <= x2; x++) {
                     const pixel = `${x},${y}`;
                     if (!visited.has(pixel)) {
-                        yield* window[first](x, y, x, y);
+                        yield* horizontal(x, y, x, y);
                         visited.add(pixel);
                     }
                 }
@@ -646,7 +646,7 @@ function* sierpinskiCarpet(x1, y1, x2, y2, depth = 4) {
         for (let x = x1 + dw; x <= x1 + 2 * dw - 1; x++) {
             const pixel = `${x},${y}`;
             if (!visited.has(pixel)) {
-                yield* window[second](x, y, x, y);
+                yield* second(x, y, x, y);
                 visited.add(pixel);
             }
         }
@@ -667,7 +667,7 @@ function* sierpinskiCarpet(x1, y1, x2, y2, depth = 4) {
                 for (let x = startX; x <= endX; x++) {
                     const pixel = `${x},${y}`;
                     if (!visited.has(pixel)) {
-                        yield* window[second](x, y, x, y);
+                        yield* second(x, y, x, y);
                         visited.add(pixel);
                     }
                 }
