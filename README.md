@@ -27,13 +27,7 @@ I'm a passionate programmer with a keen interest in everything. Currently, I'm f
     <td><img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/chartjs.svg" alt="Chart.js" width="50" height="50"></td>
     <td><img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/flask.svg" alt="Flask" width="50" height="50"></td>
     <td><img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/unity.svg" alt="Unity" width="50" height="50"></td>
-  </tr>
-  <tr>
-    <td><img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/figma.svg" alt="Figma" width="50" height="50"></td>
-    <td><img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/git.svg" alt="GIT" width="50" height="50"></td>
-    <td><img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/github.svg" alt="GitHub" width="50" height="50"></td>
-    <td><img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/sqlite.svg" alt="SQLite" width="50" height="50"></td>
-    <td><img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/stack-overflow.svg" alt="Stack-Overflow" width="50" height="50"></td>
+    <td><img src="https://icon.icepanel.io/Technology/png-shadow-512/Socket.io.png" alt="Unity" width="50" height="50"></td>
   </tr>
 </table>
 
