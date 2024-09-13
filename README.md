@@ -17,6 +17,7 @@ I'm a passionate programmer with a keen interest in everything. Currently, I'm f
     <td><img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/csharp.svg" alt="C#" width="50" height="50"></td>
     <td><img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/python.svg" alt="Python" width="50" height="50"></td>
     <td><img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/java.svg" alt="Java" width="50" height="50"></td>
+    <td><img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/WebAssembly_Logo.svg" alt="WebAssembly" width="50" height="50"></td>
   </tr>
   <tr>
     <td><img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/electron.svg" alt="Electron.js" width="50" height="50"></td>
