@@ -28,7 +28,8 @@ I'm a passionate programmer with a keen interest in everything. Currently, I'm f
     <td><img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/chartjs.svg" alt="Chart.js" width="50" height="50"></td>
     <td><img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/flask.svg" alt="Flask" width="50" height="50"></td>
     <td><img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/unity.svg" alt="Unity" width="50" height="50"></td>
-    <td><img src="https://icon.icepanel.io/Technology/png-shadow-512/Socket.io.png" alt="Unity" width="50" height="50"></td>
+    <td><img src="https://icon.icepanel.io/Technology/png-shadow-512/Socket.io.png" alt="Socket.io" width="50" height="50"></td>
+    <td><img src="https://raw.githubusercontent.com/uNetworking/uWebSockets/master/misc/logo.svg" alt="uWebSockets" width="50" height="50"></td>
   </tr>
 </table>
 
