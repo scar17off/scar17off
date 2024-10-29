@@ -709,6 +709,262 @@ function* sierpinskiTriangle(x1, y1, x2, y2) {
     yield* fillTriangle(x2, y1, mx, y1, x2, y2);
 }
 
+// ... existing code ...
+
+function* mazeFill(x1, y1, x2, y2) {
+    // Initialize maze grid with walls
+    const width = x2 - x1 + 1;
+    const height = y2 - y1 + 1;
+    const grid = Array(height).fill().map(() => Array(width).fill(true));
+    const visited = new Set();
+
+    // Generate maze using recursive backtracking
+    function generateMaze(x, y) {
+        grid[y][x] = false;
+        const directions = [[0, 2], [2, 0], [0, -2], [-2, 0]];
+        shuffleArray(directions);
+
+        for (const [dx, dy] of directions) {
+            const newX = x + dx;
+            const newY = y + dy;
+            
+            if (newX > 0 && newX < width - 1 && newY > 0 && newY < height - 1 && grid[newY][newX]) {
+                grid[y + dy/2][x + dx/2] = false;
+                generateMaze(newX, newY);
+            }
+        }
+    }
+
+    // Generate the maze
+    generateMaze(1, 1);
+
+    // Draw the maze walls first
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            if (grid[y][x]) {
+                const pixel = `${x + x1},${y + y1}`;
+                if (!visited.has(pixel)) {
+                    yield [x + x1, y + y1];
+                    visited.add(pixel);
+                }
+            }
+        }
+    }
+
+    // Find path using A* algorithm
+    const start = [1, 1];
+    const end = [width - 2, height - 2];
+    const path = findPath(grid, start, end);
+    const wrongPaths = new Set();
+
+    // Fill wrong paths first using flood fill
+    function floodFill(x, y) {
+        if (x < 0 || x >= width || y < 0 || y >= height) return;
+        if (grid[y][x] || wrongPaths.has(`${x},${y}`)) return;
+        if (path.some(([px, py]) => px === x && py === y)) return;
+
+        wrongPaths.add(`${x},${y}`);
+        const pixel = `${x + x1},${y + y1}`;
+        if (!visited.has(pixel)) {
+            yield [x + x1, y + y1];
+            visited.add(pixel);
+        }
+
+        yield* floodFill(x + 1, y);
+        yield* floodFill(x - 1, y);
+        yield* floodFill(x, y + 1);
+        yield* floodFill(x, y - 1);
+    }
+
+    // Fill wrong paths
+    yield* floodFill(1, 1);
+
+    // Finally, draw the correct path
+    for (const [x, y] of path) {
+        const pixel = `${x + x1},${y + y1}`;
+        if (!visited.has(pixel)) {
+            yield [x + x1, y + y1];
+            visited.add(pixel);
+        }
+    }
+}
+
+// A* pathfinding algorithm implementation
+function findPath(grid, start, end) {
+    const width = grid[0].length;
+    const height = grid.length;
+    
+    // Helper function to calculate heuristic (Manhattan distance)
+    function heuristic(pos) {
+        return Math.abs(end[0] - pos[0]) + Math.abs(end[1] - pos[1]);
+    }
+    
+    // Priority queue for open nodes
+    const openSet = new Set([start.toString()]);
+    const cameFrom = new Map();
+    
+    // Cost from start to node
+    const gScore = new Map();
+    gScore.set(start.toString(), 0);
+    
+    // Estimated total cost from start to end through node
+    const fScore = new Map();
+    fScore.set(start.toString(), heuristic(start));
+    
+    while (openSet.size > 0) {
+        // Find node with lowest fScore
+        let current = null;
+        let lowestF = Infinity;
+        for (const pos of openSet) {
+            const [x, y] = pos.split(',').map(Number);
+            const f = fScore.get(pos);
+            if (f < lowestF) {
+                lowestF = f;
+                current = [x, y];
+            }
+        }
+        
+        // If we reached the end, reconstruct and return the path
+        if (current[0] === end[0] && current[1] === end[1]) {
+            const path = [];
+            let curr = current;
+            while (curr) {
+                path.unshift(curr);
+                curr = cameFrom.get(curr.toString());
+            }
+            return path;
+        }
+        
+        openSet.delete(current.toString());
+        
+        // Check neighbors (up, right, down, left)
+        const neighbors = [
+            [current[0], current[1] - 1],
+            [current[0] + 1, current[1]],
+            [current[0], current[1] + 1],
+            [current[0] - 1, current[1]]
+        ];
+        
+        for (const neighbor of neighbors) {
+            const [x, y] = neighbor;
+            
+            // Skip if out of bounds or is a wall
+            if (x < 0 || x >= width || y < 0 || y >= height || grid[y][x]) {
+                continue;
+            }
+            
+            const tentativeG = gScore.get(current.toString()) + 1;
+            const neighborStr = neighbor.toString();
+            
+            if (!gScore.has(neighborStr) || tentativeG < gScore.get(neighborStr)) {
+                cameFrom.set(neighborStr, current);
+                gScore.set(neighborStr, tentativeG);
+                fScore.set(neighborStr, tentativeG + heuristic(neighbor));
+                openSet.add(neighborStr);
+            }
+        }
+    }
+    
+    // No path found
+    return [];
+}
+
+// Draw the maze, find the path and fill the wrong paths, then draw the correct path
+function* mazeFill(x1, y1, x2, y2) {
+    const width = x2 - x1 + 1;
+    const height = y2 - y1 + 1;
+    const visited = new Set();
+    
+    // Create grid for maze - true represents walls
+    const grid = Array(height).fill().map(() => Array(width).fill(true));
+    
+    // Start maze generation from position (1,1)
+    function carvePath(x, y) {
+        grid[y][x] = false; // Mark current cell as path
+        
+        // Define possible directions (right, down, left, up)
+        const directions = [
+            [0, 2],  // right 
+            [2, 0],  // down
+            [0, -2], // left
+            [-2, 0]  // up
+        ];
+        
+        // Randomize directions
+        for (let i = directions.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [directions[i], directions[j]] = [directions[j], directions[i]];
+        }
+        
+        for (const [dx, dy] of directions) {
+            const newX = x + dx;
+            const newY = y + dy;
+            
+            if (newX > 0 && newX < width - 1 && 
+                newY > 0 && newY < height - 1 && 
+                grid[newY][newX]) {
+                
+                // Carve through the wall between cells
+                grid[y + dy/2][x + dx/2] = false;
+                carvePath(newX, newY);
+            }
+        }
+    }
+
+    // Start carving from (1,1)
+    carvePath(1, 1);
+    
+    // Draw maze walls
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            if (grid[y][x]) {
+                const pixel = `${x + x1},${y + y1}`;
+                if (!visited.has(pixel)) {
+                    yield [x + x1, y + y1];
+                    visited.add(pixel);
+                }
+            }
+        }
+    }
+
+    // Find path using A* algorithm
+    const start = [1, 1];
+    const end = [width - 2, height - 2];
+    const path = findPath(grid, start, end);
+    const wrongPaths = new Set();
+
+    // Fill wrong paths first using flood fill
+    function* floodFill(x, y) {
+        if (x < 0 || x >= width || y < 0 || y >= height) return;
+        if (grid[y][x] || wrongPaths.has(`${x},${y}`)) return;
+        if (path.some(([px, py]) => px === x && py === y)) return;
+
+        wrongPaths.add(`${x},${y}`);
+        const pixel = `${x + x1},${y + y1}`;
+        if (!visited.has(pixel)) {
+            yield [x + x1, y + y1];
+            visited.add(pixel);
+        }
+
+        yield* floodFill(x + 1, y);
+        yield* floodFill(x - 1, y);
+        yield* floodFill(x, y + 1);
+        yield* floodFill(x, y - 1);
+    }
+
+    // Fill wrong paths
+    yield* floodFill(1, 1);
+
+    // Finally, draw the correct path
+    for (const [x, y] of path) {
+        const pixel = `${x + x1},${y + y1}`;
+        if (!visited.has(pixel)) {
+            yield [x + x1, y + y1];
+            visited.add(pixel);
+        }
+    }
+}
+
 window.patterns = [
     horizontal,
     vertical,
@@ -751,7 +1007,8 @@ window.patterns = [
     dotFill,
     dualSpiral,
     sierpinskiCarpet,
-    sierpinskiTriangle
+    sierpinskiTriangle,
+    mazeFill
 ];
 let I = 0;
 
@@ -797,5 +1054,6 @@ window.constants = {
     'Dot Fill': I++,
     'Dual Spiral': I++,
     'Sierpinski Carpet': I++,
-    'Sierpinski Triangle': I++
+    'Sierpinski Triangle': I++,
+    'Maze Fill': I++
 }
