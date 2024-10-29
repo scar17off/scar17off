@@ -805,8 +805,8 @@ function* mazeFill(x1, y1, x2, y2) {
             const newX = x + dx;
             const newY = y + dy;
             
-            if (newX > 0 && newX < width - 1 && 
-                newY > 0 && newY < height - 1 && 
+            if (newX >= 0 && newX < width - 1 && 
+                newY >= 0 && newY < height - 1 && 
                 grid[newY][newX]) {
                 
                 grid[y + dy/2][x + dx/2] = false;
@@ -864,6 +864,87 @@ function* mazeFill(x1, y1, x2, y2) {
     }
 }
 
+function* starRaysFill(x1, y1, x2, y2) {
+    const visited = new Set();
+    const centerX = Math.floor((x1 + x2) / 2);
+    const centerY = Math.floor((y1 + y2) / 2);
+    
+    // Draw main diagonals first
+    for (let i = 0; i <= Math.max(x2 - x1, y2 - y1); i++) {
+        // Main diagonal points
+        const points = [
+            [centerX + i, centerY + i],
+            [centerX - i, centerY - i], 
+            [centerX + i, centerY - i],
+            [centerX - i, centerY + i]
+        ];
+        
+        for (const [x, y] of points) {
+            if (x >= x1 && x <= x2 && y >= y1 && y <= y2) {
+                const pixel = `${x},${y}`;
+                if (!visited.has(pixel)) {
+                    yield [x, y];
+                    visited.add(pixel);
+                }
+            }
+        }
+    }
+
+    // Draw star rays
+    const numRays = 16;
+    const angles = [];
+    for (let i = 0; i < numRays; i++) {
+        angles.push((2 * Math.PI * i) / numRays);
+    }
+    
+    // Draw rays
+    for (let r = 0; r <= Math.hypot(x2-x1, y2-y1); r++) {
+        for (const angle of angles) {
+            const x = Math.round(centerX + r * Math.cos(angle));
+            const y = Math.round(centerY + r * Math.sin(angle));
+            
+            if (x >= x1 && x <= x2 && y >= y1 && y <= y2) {
+                const pixel = `${x},${y}`;
+                if (!visited.has(pixel)) {
+                    yield [x, y];
+                    visited.add(pixel);
+                }
+            }
+        }
+    }
+
+    // Fill remaining gaps using flood fill
+    function* floodFill(x, y) {
+        if (x < x1 || x > x2 || y < y1 || y > y2) return;
+        const pixel = `${x},${y}`;
+        if (visited.has(pixel)) return;
+
+        yield [x, y];
+        visited.add(pixel);
+
+        // Fill in 8 directions for better coverage
+        const directions = [
+            [-1,-1], [0,-1], [1,-1],
+            [-1,0],          [1,0],
+            [-1,1],  [0,1],  [1,1]
+        ];
+
+        for (const [dx, dy] of directions) {
+            yield* floodFill(x + dx, y + dy);
+        }
+    }
+
+    // Start flood fills from multiple points to ensure complete coverage
+    for (let y = y1; y <= y2; y++) {
+        for (let x = x1; x <= x2; x++) {
+            const pixel = `${x},${y}`;
+            if (!visited.has(pixel)) {
+                yield* floodFill(x, y);
+            }
+        }
+    }
+}
+
 window.patterns = [
     horizontal,
     vertical,
@@ -907,7 +988,8 @@ window.patterns = [
     dualSpiral,
     sierpinskiCarpet,
     sierpinskiTriangle,
-    mazeFill
+    mazeFill,
+    starRaysFill
 ];
 let I = 0;
 
@@ -954,5 +1036,6 @@ window.constants = {
     'Dual Spiral': I++,
     'Sierpinski Carpet': I++,
     'Sierpinski Triangle': I++,
-    'Maze Fill': I++
+    'Maze Fill': I++,
+    'Star Rays Fill': I++
 }
