@@ -53,7 +53,6 @@ I'm a passionate programmer with a keen interest in everything. Currently, I'm f
   <a href="https://en.gravatar.com/scar17off"><img src="https://img.shields.io/badge/Gravatar-1E8CBE?logo=gravatar&logoColor=white"></a>
   <a href="https://youtube.com/@scar17off?si=CKawzJMKppyFtLE0"><img src="https://img.shields.io/badge/YouTube-FF0000?logo=youtube&logoColor=white"></a>
   <a href="https://www.twitch.tv/scar17off"><img src="https://img.shields.io/badge/Twitch-9146FF?logo=twitch&logoColor=white"></a>
-  <a href="https://vk.com/scar17off"><img src="https://img.shields.io/badge/VKontakte-4C75A3?logo=vk&logoColor=white"></a>
   <a href="https://dev.to/scar17off"><img src="https://img.shields.io/badge/dev-to?logo=dev.to"></a>
 </div>
 
