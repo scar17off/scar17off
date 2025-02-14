@@ -1,6 +1,6 @@
 # 👋 Hello, I'm scar17off!
 
-I'm a passionate programmer with a keen interest in everything. Currently, I'm focused on: [StealthNet](https://github.com/stealth-net/) and [MaliceRAT](https://github.com/scar17off/MaliceRAT). 
+I'm a passionate programmer with a keen interest in everything. Currently, I'm focused on: [Zyro](https://github.com/scar17off/zyro-ddnet). 
 
 <div align="center">
 
