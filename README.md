@@ -33,7 +33,7 @@ I'm a passionate programmer with a keen interest in everything. Currently, I'm f
     <td><img src="https://icon.icepanel.io/Technology/png-shadow-512/Socket.io.png" alt="Socket.io" width="50" height="50"></td>
     <td><img src="https://raw.githubusercontent.com/uNetworking/uWebSockets/master/misc/logo.svg" alt="uWebSockets" width="50" height="50"></td>
     <td><img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/Tensorflow_logo.svg" alt="Tensorflow" width="50" height="50"></td>
-    <td><img src="https://seeklogo.com/images/G/gradio-icon-logo-908AE1836C-seeklogo.com.png" alt="Gradio UI" width="50" height="50"></td>
+    <td><img src="https://raw.githubusercontent.com/scar17off/scar17off/main/Gradio.png" alt="Gradio UI" width="50" height="50"></td>
   </tr>
 </table>
 
