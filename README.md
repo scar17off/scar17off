@@ -1,5 +1,3 @@
-![Meme sheet](https://i.imgur.com/1UN3TTp.png)
-
 # 👋 Hello, I'm scar17off!
 
 I'm a passionate programmer with a keen interest in everything. Currently, I'm focused on: [Zyro](https://github.com/scar17off/zyro-ddnet). 
