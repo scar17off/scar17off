@@ -17,9 +17,6 @@ I'm a passionate programmer with a keen interest in everything. Currently, I'm f
     <td><img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/cpp.svg" alt="C++" width="50" height="50"></td>
     <td><img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/csharp.svg" alt="C#" width="50" height="50"></td>
     <td><img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/python.svg" alt="Python" width="50" height="50"></td>
-    <td><img src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/java.svg" alt="Java" width="50" height="50"></td>
-    <td><img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/WebAssembly_Logo.svg" alt="WebAssembly" width="50" height="50"></td>
-    <td><img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Rust_programming_language_black_logo.svg" alt="Rust" width="50" height="50"></td>
     <td><img src="https://img.icons8.com/?size=96&id=KppI8aNv6oQe&format=png" alt="Lua" width="50" height="50"></td>
   </tr>
   <tr>
@@ -50,7 +47,7 @@ I'm a passionate programmer with a keen interest in everything. Currently, I'm f
   <a href="https://pastebin.com/u/scar17off"><img src="https://img.shields.io/badge/Pastebin-02D345?logo=pastebin&logoColor=white"></a>
   <a href="https://www.reddit.com/user/scar17off/"><img src="https://img.shields.io/badge/Reddit-FF4500?logo=reddit&logoColor=white"></a>
   <a href="https://www.roblox.com/users/3175818992/profile"><img src="https://img.shields.io/badge/Roblox-CA1F37?logo=roblox&logoColor=white"></a>
-  <a href="https://ru.pinterest.com/scar17off/"><img src="https://img.shields.io/badge/Pinterest-E60023?logo=pinterest&logoColor=white"></a>
+  <a href="https://pinterest.com/scar17off/"><img src="https://img.shields.io/badge/Pinterest-E60023?logo=pinterest&logoColor=white"></a>
   <a href="https://www.npmjs.com/~scar17off"><img src="https://img.shields.io/badge/npm-CB3837?logo=npm&logoColor=white"></a>
   <a href="https://en.gravatar.com/scar17off"><img src="https://img.shields.io/badge/Gravatar-1E8CBE?logo=gravatar&logoColor=white"></a>
   <a href="https://youtube.com/@scar17off?si=CKawzJMKppyFtLE0"><img src="https://img.shields.io/badge/YouTube-FF0000?logo=youtube&logoColor=white"></a>
