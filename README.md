@@ -1,6 +1,7 @@
 # 👋 Hello, I'm scar17off!
 
 I'm a passionate programmer with a keen interest in everything. Currently, I'm focused on: [Zyro](https://github.com/scar17off/zyro-ddnet). 
+> Thank goodness ai formalizers exist as I might not otherwise write professional styled text for my git commits and documentations 🙏 because I'm tired of writing "bug fix" for my commit, and because I *still* don’t know how to showcase my project in 500 iq professional style
 
 <div align="center">
 
