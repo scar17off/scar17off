@@ -44,7 +44,7 @@ I'm a passionate programmer with a keen interest in everything. Currently, I'm f
   <a href="https://guilded.gg/scar17off"><img src="https://img.shields.io/badge/Guilded-7D00FF?logo=guilded&logoColor=white"></a>
   <a href="https://steamcommunity.com/id/scar17off/"><img src="https://img.shields.io/badge/Steam-000000?logo=steam&logoColor=white"></a>
   <a href="https://greasyfork.org/en/users/754226-scar17"><img src="https://img.shields.io/badge/Greasy_Fork-009966?logo=greasyfork&logoColor=white"></a>
-  <a href="https://pastebin.com/u/scar17><img src="https://img.shields.io/badge/Pastebin-02D345?logo=pastebin&logoColor=white"></a>
+  <a href="https://pastebin.com/u/scar17"><img src="https://img.shields.io/badge/Pastebin-02D345?logo=pastebin&logoColor=white"></a>
   <a href="https://www.reddit.com/user/scar17off/"><img src="https://img.shields.io/badge/Reddit-FF4500?logo=reddit&logoColor=white"></a>
   <a href="https://www.roblox.com/users/3175818992/profile"><img src="https://img.shields.io/badge/Roblox-CA1F37?logo=roblox&logoColor=white"></a>
   <a href="https://pinterest.com/scar17off/"><img src="https://img.shields.io/badge/Pinterest-E60023?logo=pinterest&logoColor=white"></a>
