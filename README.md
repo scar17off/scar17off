@@ -38,7 +38,7 @@ I'm a passionate programmer with a keen interest in everything. Currently, I'm f
 ## 📫 Let's Connect
 
 <div align="center">
-  <a href="https://discord.gg/59jvbFpCza"><img src="https://img.shields.io/badge/Discord-7289DA?logo=discord&logoColor=white"></a>
+  <a href="https://discord.gg/59jvbFpCza"><img src="https://img.shields.io/discord/866716220035039313?logo=discord&logoColor=white&label=Discord"></a>
   <a href="https://x.com/scar17off"><img src="https://img.shields.io/badge/X-1DA1F2?logo=x"></a>
   <a href="https://t.me/scar17off"><img src="https://img.shields.io/badge/Telegram-2CA5E0?logo=telegram&logoColor=white"></a>
   <a href="https://rvlt.gg/JR5xYVBm"><img src="https://img.shields.io/revolt/invite/JR5xYVBm?logo=revoltdotchat&logoColor=white&label=Revolt"></a>
