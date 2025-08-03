@@ -41,6 +41,7 @@ I'm a passionate programmer with a keen interest in everything. Currently, I'm f
   <a href="https://discord.gg/59jvbFpCza"><img src="https://img.shields.io/badge/Discord-7289DA?logo=discord&logoColor=white"></a>
   <a href="https://x.com/scar17off"><img src="https://img.shields.io/badge/X-1DA1F2?logo=x"></a>
   <a href="https://t.me/scar17off"><img src="https://img.shields.io/badge/Telegram-2CA5E0?logo=telegram&logoColor=white"></a>
+  <a href="https://rvlt.gg/JR5xYVBm"><img src="https://img.shields.io/revolt/invite/JR5xYVBm?logo=revoltdotchat&logoColor=white&label=Revolt"></a>
   <a href="https://guilded.gg/scar17off"><img src="https://img.shields.io/badge/Guilded-7D00FF?logo=guilded&logoColor=white"></a>
   <a href="https://steamcommunity.com/id/scar17off/"><img src="https://img.shields.io/badge/Steam-000000?logo=steam&logoColor=white"></a>
   <a href="https://greasyfork.org/en/users/754226-scar17"><img src="https://img.shields.io/badge/Greasy_Fork-009966?logo=greasyfork&logoColor=white"></a>
